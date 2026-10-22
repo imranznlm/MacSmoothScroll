@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <AssemblyTitle>Smooth Scroll</AssemblyTitle>
+    <Product>MacSmoothScroll</Product>
+    <Description>Mac-like inertial scrolling for the Windows mouse wheel.</Description>
+    <Version>1.1.0</Version>
+    <!-- The nested git checkout is a separate copy of this project; keep it out of this build. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);SmoothScrollwindows/**;bin/**;obj/**</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="SmoothScrollwindows/**" />
+    <EmbeddedResource Remove="SmoothScrollwindows/**" />
+    <None Remove="SmoothScrollwindows/**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Same artwork as the exe icon, so the tray and window icons match. -->
+    <EmbeddedResource Include="app.ico" LogicalName="MacSmoothScroll.app.ico" />
+  </ItemGroup>
+
+</Project>

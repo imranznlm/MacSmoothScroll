@@ -1,0 +1,11 @@
+# Build output
+bin/
+obj/
+dist/
+*.pdb
+*.user
+*.suo
+.vs/
+
+# Separate checkout of this repo (has its own git history)
+SmoothScrollwindows/
