@@ -533,9 +533,26 @@ namespace MacSmoothScroll
 
         private void Tick()
         {
+            // Ctrl+wheel is zoom and Alt+wheel belongs to the app. If the user
+            // presses one of these during a coast, stop the glide so smoothed
+            // steps cannot keep scrolling/zooming while the modifier is held.
+            if (IsModifierBypassHeld())
+            {
+                Reset();
+                return;
+            }
+
             Step(ref verticalVelocity, ScrollAxis.Vertical);
             Step(ref horizontalVelocity, ScrollAxis.Horizontal);
         }
+
+        private static bool IsModifierBypassHeld() =>
+            IsKeyDown(VK_CONTROL) || IsKeyDown(VK_MENU);
+
+        private static bool IsKeyDown(int virtualKey) => (GetAsyncKeyState(virtualKey) & 0x8000) != 0;
+
+        private const int VK_CONTROL = 0x11;
+        private const int VK_MENU = 0x12;
 
         private void Step(ref float velocityField, ScrollAxis axis)
         {
@@ -601,6 +618,9 @@ namespace MacSmoothScroll
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
+
+        [DllImport("user32.dll")]
+        private static extern short GetAsyncKeyState(int vKey);
 
         private const uint INPUT_MOUSE = 0;
         private const uint MOUSEEVENTF_WHEEL = 0x0800;

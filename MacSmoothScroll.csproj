@@ -11,7 +11,7 @@
     <AssemblyTitle>Smooth Scroll</AssemblyTitle>
     <Product>MacSmoothScroll</Product>
     <Description>Mac-like inertial scrolling for the Windows mouse wheel.</Description>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <!-- The nested git checkout is a separate copy of this project; keep it out of this build. -->
     <DefaultItemExcludes>$(DefaultItemExcludes);SmoothScrollwindows/**;bin/**;obj/**</DefaultItemExcludes>
   </PropertyGroup>
